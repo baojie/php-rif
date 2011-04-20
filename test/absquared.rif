@@ -1,0 +1,206 @@
+<!DOCTYPE Document [
+  <!ENTITY rif  "http://www.w3.org/2007/rif#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY func "http://www.w3.org/2007/rif-builtin-function#">
+  <!ENTITY ex   "http://www.example.org/numerics#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+]>
+
+<Document 
+    xml:base="http://www.example.com/numerics#"
+    xmlns:n="http://www.example.org/numerics#"
+    xmlns:rif="http://www.w3.org/2007/rif#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:func="http://www.w3.org/2007/rif-builtin-function#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#">
+	<directive> 
+    <Import>
+	  <id><Const type="&rif;local">Import annotation</Const></id>	
+      <location>http://www.w3.org/2005/rules/t1</location>
+	  <profile>http://www.w3.org/ns/entailment/Simple</profile>
+    </Import>
+    </directive>
+    <meta>
+	  <And>
+	    <formula>
+			  <Frame>
+				<object>
+				  <List>
+					<id><Const type="&rif;local">List annotation</Const></id>
+					<items ordered="yes">
+						<Const type="&rif;local">item1</Const>
+						<List>
+						   <items ordered="yes">
+						     <Const type="&rif;local">item2</Const>
+						   </items>
+						</List>						
+					</items>
+				  </List>
+				</object>
+				<slot ordered="yes">
+				  <Const type="&rif;iri">&rdfs;comment</Const>
+				  <Const type="&rif;local">comment 1a</Const>
+				</slot>
+				<slot ordered="yes">
+				  <Const type="&rif;iri">&rdfs;comment</Const>
+				  <Const type="&rif;local">comment 1b</Const>
+				</slot>
+			  </Frame>
+		</formula>
+		<formula>
+			  <Frame>
+				<object>
+				  <Const type="&rif;local">pd</Const>
+				</object>
+				<slot ordered="yes">
+				  <Const type="&rif;iri">&rdfs;comment</Const>
+				  <Const type="&rif;local">comment 2</Const>
+				</slot>
+			  </Frame>
+		</formula>	  
+	  </And>
+	</meta>
+  <payload>
+   <Group>
+    <meta>
+      <Frame>
+        <object>
+          <Const type="&rif;local">pd</Const>
+        </object>
+        <slot ordered="yes">
+          <Const type="&rif;iri">&rdfs;comment</Const>
+          <Const type="&rif;local">Nested Externals</Const>
+        </slot>
+      </Frame>
+    </meta>
+	<sentence>
+		<Group>
+		  <sentence>
+		    <Implies>
+			  <if>
+				<Exists>
+				   <declare><Var>x</Var></declare>
+				   <formula>
+						<Equal>
+							<id><Const type="&rif;local">Equal annotation</Const></id>	
+       						<left><Var>x</Var></left>
+							<right><Const type="&rif;iri">&ex;y</Const></right>
+						</Equal>
+				   </formula>
+				 </Exists>  
+			  </if>
+			  <then>
+               <Atom>
+				   <op><Const type="&rif;iri">&ex;g</Const></op>
+				   <args ordered="yes">
+					 <Var>x</Var>
+				   </args>
+				 </Atom>
+			  </then>
+			</Implies>
+		  </sentence>
+	  </Group>
+	</sentence>
+    <sentence>
+     <Forall>
+	   <id><Const type="&rif;local">Forall annotation</Const></id>	
+       <declare>
+			<Var>a</Var>
+	   </declare>
+       <declare><Var>b</Var></declare>
+       <declare><Var>s</Var></declare>
+       <formula>
+         <Implies>
+           <id><Const type="&rif;local">Implies annotation</Const></id>	
+           <if>
+               <Or>
+			      <formula>
+					 <External>
+					   <content>
+						 <Expr>
+						   <op><Const type="&rif;iri">&func;numeric-add</Const></op>
+						   <args ordered="yes">
+							 <Var>a</Var>
+							 <Var>a</Var>
+						   </args>
+						 </Expr>
+					   </content>
+					 </External>
+	              </formula>
+			      <formula>
+				    <Member>
+					    <id><Const type="&rif;local">Member annotation</Const></id>	
+						<instance><Var>x</Var></instance>
+						<class><Var>y</Var></class>
+					</Member>
+				  </formula>
+			      <formula>
+					  <Frame>
+						<object>
+						  <Const type="&rif;local">pd</Const>
+						</object>
+						<slot ordered="yes">
+						  <Const type="&rif;iri">&rdfs;comment</Const>
+						  <Const type="&rif;local">aha</Const>
+						</slot>
+					  </Frame>
+				  </formula>
+			      <formula>
+			        <Equal>
+					   <left><Var>s</Var></left>
+					   <right>
+						 <External>
+						   <content>
+							 <Expr>
+							   <op><Const type="&rif;iri">&func;numeric-add</Const></op>
+							   <args ordered="yes">
+								 <External>
+								   <content>
+									 <Expr>
+									   <op><Const type="&rif;iri">&func;numeric-multiply</Const></op>
+									   <args ordered="yes">
+										 <Var>a</Var>
+										 <Var>a</Var>
+									   </args>
+									 </Expr>
+								   </content>
+								 </External>
+							   </args>
+							 </Expr>
+						   </content>
+						 </External>
+					   </right>
+				   </Equal>
+				   </formula>
+			   </Or>
+           </if>
+           <then>
+		      <And>
+				<formula>
+				 <Atom>
+				   <op><Const type="&rif;iri">&ex;absquared</Const></op>
+				   <args ordered="yes">
+					 <Var>a</Var>
+					 <Var>b</Var>
+				   </args>
+				 </Atom>
+				</formula>
+				<formula>
+				 <Atom>
+				   <op><Const type="&rif;iri">&ex;absquared</Const></op>
+				   <args ordered="yes">
+					 <Var>b</Var>
+					 <Var>s</Var>
+				   </args>
+				 </Atom>
+			    </formula>
+			  </And>	 
+           </then>
+         </Implies>
+       </formula>
+     </Forall>
+    </sentence>
+   </Group>
+  </payload>
+ </Document>

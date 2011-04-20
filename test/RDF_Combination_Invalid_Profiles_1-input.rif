@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Document [
+  <!ENTITY rif  "http://www.w3.org/2007/rif#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<Document 
+    xmlns="http://example.org/rif#"
+    xmlns:rif="http://www.w3.org/2007/rif#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:func="http://www.w3.org/2007/rif-builtin-function#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#">
+  <directive> 
+    <Import>
+	  <id><Const type="&rif;local">Remote1</Const></id>	
+      <location>http://www.w3.org/2005/rules/test/repository/tc/RDF_Combination_Invalid_Profiles_1/RDF_Combination_Invalid_Profiles_1-import001</location>
+    </Import>
+  </directive>
+  <directive>
+    <Import>
+      <location>http://www.w3.org/2005/rules/test/repository/tc/RDF_Combination_Invalid_Profiles_1/RDF_Combination_Invalid_Profiles_1-import002</location>
+      <profile>http://www.w3.org/ns/entailment/OWL-Direct</profile>
+    </Import>
+  </directive>
+</Document>
+<!--XML document generated on Sun Nov 07 10:36:26 EST 2010-->
