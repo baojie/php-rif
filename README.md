@@ -5,3 +5,5 @@ RIF (Rule Interchange Format) is a semantic web language. This project provides 
 
 
 More details about RIF Core http://www.w3.org/TR/2013/REC-rif-core-20130205/
+
+For usage example, please see https://github.com/baojie/php-rif/tree/master/test
